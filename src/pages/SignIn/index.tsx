@@ -1,4 +1,4 @@
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Image, View, ScrollView, KeyboardAvoidingView, Platform, TextInput, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
@@ -19,6 +19,8 @@ import { Container, Title, ForgotPassword, ForgotPasswordText, CreateAccountButt
 
 import logoImg from '../../assets/logo.png';
 
+import SplashScreen from 'react-native-splash-screen';
+
 interface SignInFormData {
   email: string;
   password: string;
@@ -31,6 +33,10 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
 
   const { signIn } = useAuth();
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   const handleSignIn = useCallback(
     async (data: SignInFormData) => {
